@@ -1,9 +1,11 @@
 package com.mdaq.testing.gitlab;
 
+import com.mdaq.testing.FileHandler;
 import com.mdaq.testing.GsonHandler;
 import com.mdaq.testing.HttpClientHandler;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -15,6 +17,12 @@ public class GitlabService {
     private static final String CI_PIPELINE_ID = "CI_PIPELINE_ID";
     private static final String PRIVATE_TOKEN = "PRIVATE_TOKEN";
 
+    public GetTestReportResponse getEmptyReport(){
+        var stream = getClass().getClassLoader().getResourceAsStream("empty-report.json");
+        if (stream == null) throw new IllegalStateException("empty-report.json not found");
+        return GsonHandler.getGson().fromJson(new InputStreamReader(stream), GetTestReportResponse.class);
+    }
+
     public GetTestReportResponse getLatestTestReport(URI uri) throws IOException, InterruptedException {
         System.out.println(uri.toString());
         HttpRequest request = HttpRequest.newBuilder()
@@ -23,6 +31,7 @@ public class GitlabService {
                 .build();
         var response = HttpClientHandler.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.statusCode());
+        System.out.println(response.body());
         return GsonHandler.getGson().fromJson(response.body(), GetTestReportResponse.class);
     }
 
