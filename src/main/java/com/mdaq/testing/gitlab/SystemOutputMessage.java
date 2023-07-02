@@ -1,4 +1,4 @@
-package com.mdaq.testing;
+package com.mdaq.testing.gitlab;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

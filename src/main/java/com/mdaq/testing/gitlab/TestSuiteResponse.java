@@ -1,4 +1,4 @@
-package com.mdaq.testing;
+package com.mdaq.testing.gitlab;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.List;
 public class TestSuiteResponse {
     private String name;
     @SerializedName("total_time")
-    private String totalTime;
+    private Float totalTime;
     @SerializedName("total_count")
     private String totalCount;
     @SerializedName("success_count")

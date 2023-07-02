@@ -1,1 +1,105 @@
-{"text": "Hello World"}
+{
+  "type":"message",
+  "attachments":[
+    {
+      "contentType":"application/vnd.microsoft.card.adaptive",
+      "content": {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.4",
+        "body": [
+          {
+            "type": "Container",
+            "style": "good",
+            "items": [
+              {
+                "type": "TextBlock",
+                "text": "Automation Test Daily Report",
+                "wrap": true,
+                "fontType": "Default",
+                "size": "ExtraLarge",
+                "horizontalAlignment": "Center",
+                "id": "title-text",
+                "weight": "Bolder"
+              },
+              {
+                "type": "FactSet",
+                "facts": [
+                  {
+                    "title": "Date",
+                    "value": "Value 1"
+                  },
+                  {
+                    "title": "Environment",
+                    "value": "Value 2"
+                  },
+                  {
+                    "title": "Test Suite",
+                    "value": "dzd"
+                  }
+                ],
+                "separator": true,
+                "id": "general-info"
+              }
+            ],
+            "id": "card-title"
+          },
+          {
+            "type": "FactSet",
+            "facts": [
+              {
+                "title": "Total",
+                "value": "Value 1"
+              },
+              {
+                "title": "Passed",
+                "value": "Value 2"
+              },
+              {
+                "title": "Failed",
+                "value": "Value 2"
+              },
+              {
+                "title": "Skipped",
+                "value": "Value 2"
+              },
+              {
+                "title": "Error",
+                "value": "Value 2"
+              },
+              {
+                "title": "Execution Time",
+                "value": "Value 2"
+              }
+            ],
+            "separator": true,
+            "id": "test-result"
+          },
+          {
+            "type": "ActionSet",
+            "actions": [
+              {
+                "type": "Action.OpenUrl",
+                "title": "Open ReportPortal report",
+                "id": "open-rp",
+                "url": "sdzxc"
+              },
+              {
+                "type": "Action.OpenUrl",
+                "title": "Open Pipelines page",
+                "url": "https://git.sg.m-daq.net/gogogo/go3-testing/go3-integration-test/-/pipeline_schedules",
+                "id": "open-gitlab"
+              }
+            ],
+            "horizontalAlignment": "Center",
+            "spacing": "None",
+            "separator": true,
+            "id": "action"
+          }
+        ]
+      }
+    }
+
+
+  ]
+}

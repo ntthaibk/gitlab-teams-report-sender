@@ -1,4 +1,4 @@
-package com.mdaq.testing;
+package com.mdaq.testing.gitlab;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
