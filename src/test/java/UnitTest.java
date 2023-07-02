@@ -1,24 +1,17 @@
-import com.mdaq.testing.gitlab.GitlabService;
-import com.mdaq.testing.teams.TeamsNotificationCardHandler;
-import com.mdaq.testing.teams.TeamsWebhookService;
-import org.testng.Assert;
+import com.mdaq.testing.FileHandler;
+import com.mdaq.testing.reportportal.ReportPortalLaunchInfo;
+import com.mdaq.testing.reportportal.ReportPortalService;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 public class UnitTest {
+
     @Test
-    void when_emptyTestResult(){
-
-        var rpLaunchUrl = "yoyo";
-        GitlabService service = new GitlabService();
-        TeamsNotificationCardHandler teamsNotificationCardHandler = new TeamsNotificationCardHandler();
-
-        var latestTestReport = service.getEmptyReport();
-        var adaptiveCard = teamsNotificationCardHandler.loadCardTemplate();
-        Assert.expectThrows(IllegalStateException.class, () -> {
-            teamsNotificationCardHandler.updateCardInfo(latestTestReport, adaptiveCard, rpLaunchUrl);
-        });
+    void rp_service_test() throws IOException, InterruptedException {
+        ReportPortalService service = new ReportPortalService();
+        ReportPortalLaunchInfo launchInfo = FileHandler.jsonFileToObject("reportportal-launch-id.txt", ReportPortalLaunchInfo.class);
+        service.getLaunchByUuid(service.getUrl(launchInfo));
     }
 
 }

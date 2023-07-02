@@ -17,12 +17,6 @@ public class GitlabService {
     private static final String CI_PIPELINE_ID = "CI_PIPELINE_ID";
     private static final String PRIVATE_TOKEN = "PRIVATE_TOKEN";
 
-    public GetTestReportResponse getEmptyReport(){
-        var stream = getClass().getClassLoader().getResourceAsStream("empty-report.json");
-        if (stream == null) throw new IllegalStateException("empty-report.json not found");
-        return GsonHandler.getGson().fromJson(new InputStreamReader(stream), GetTestReportResponse.class);
-    }
-
     public GetTestReportResponse getLatestTestReport(URI uri) throws IOException, InterruptedException {
         System.out.println(uri.toString());
         HttpRequest request = HttpRequest.newBuilder()

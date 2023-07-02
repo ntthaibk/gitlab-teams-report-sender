@@ -1,1 +1,5 @@
-https://gogogo-dev-temp-new.m-daq.com:8080/ui/#phoenix/launches/all/eaadcb64-eb55-41f2-b0df-603829f111c8
+{
+  "baseUrl": "https://gogogo-dev-temp-new.m-daq.com:8080",
+  "projectName": "phoenix",
+  "launchUuid": "e272d5ff-59eb-4240-a0dc-16d18d2cf65f"
+}
