@@ -5,6 +5,7 @@ import com.mdaq.testing.teams.AdaptiveCard;
 import com.mdaq.testing.teams.TeamsWebhookService;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.time.Instant;
 
@@ -26,7 +27,11 @@ public class TeamsReportSender {
         var latestTestReport = service.getLatestTestReport(service.getUrl());
         Instant time = Instant.now();
 
-        AdaptiveCard adaptiveCard = FileHandler.jsonFileToObject(CARD_PATH, AdaptiveCard.class);
+        var card = TeamsReportSender.class.getClassLoader().getResourceAsStream("card.json");
+        if (card == null) {
+            throw new IllegalStateException("Failed to load card.json");
+        }
+        AdaptiveCard adaptiveCard = GsonHandler.getGson().fromJson(new InputStreamReader(card), AdaptiveCard.class);
         latestTestReport.getTestSuites().forEach(
                 testSuite -> adaptiveCard.getAttachments().forEach(
                         attachment -> attachment.getContent().getBody().forEach(
