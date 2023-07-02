@@ -18,6 +18,7 @@ public class TeamsReportSender {
             return;
         } else {
             rpLaunchUrl = Files.readString(FileHandler.getFileDirectory(args[0].trim())).trim();
+            System.out.println(rpLaunchUrl);
         }
 
         GitlabService service = new GitlabService();

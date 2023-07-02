@@ -16,6 +16,7 @@ public class GitlabService {
     private static final String PRIVATE_TOKEN = "PRIVATE_TOKEN";
 
     public GetTestReportResponse getLatestTestReport(URI uri) throws IOException, InterruptedException {
+        System.out.println(uri.toString());
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(uri)
                 .header("PRIVATE-TOKEN", System.getenv(PRIVATE_TOKEN))

@@ -12,6 +12,7 @@ import java.net.http.HttpResponse;
 public class TeamsWebhookService {
     private static final String WEBHOOK_URL = "https://mdaqglobal.webhook.office.com/webhookb2/56533880-4413-4929-8c69-671c04b38f5f@aba9e4aa-6a76-4ed2-bcae-721a1aa9e76b/IncomingWebhook/d4c3e1505b7940aca702fd4015eddda0/2ce7a116-21a3-4c22-972a-61b534fbb0fa";
     public void notifyTeam(AdaptiveCard adaptiveCard) throws IOException, InterruptedException {
+        System.out.println(GsonHandler.getGson().toJson(adaptiveCard));
         var response =  HttpClientHandler.getHttpClient().send(
                 HttpRequest.newBuilder()
                         .uri(URI.create(WEBHOOK_URL))
