@@ -86,7 +86,7 @@
               },
               {
                 "type": "Action.OpenUrl",
-                "title": "Open Pipelines page",
+                "title": "Open Pipeline {%s}",
                 "url": "https://git.sg.m-daq.net/gogogo/go3-testing/go3-integration-test/-/pipeline_schedules",
                 "id": "open-gitlab"
               }

@@ -18,6 +18,36 @@ public class TeamsNotificationCardHandler {
         return GsonHandler.getGson().fromJson(new InputStreamReader(card), AdaptiveCard.class);
     }
 
+    public AdaptiveCard loadErrorCard(){
+        var card = getClass().getClassLoader().getResourceAsStream("error-card.json");
+        if (card == null) {
+            throw new IllegalStateException("Failed to load card.json");
+        }
+        return GsonHandler.getGson().fromJson(new InputStreamReader(card), AdaptiveCard.class);
+    }
+
+    public void updateErrorCardInfo(AdaptiveCard adaptiveCard){
+        adaptiveCard.getAttachments().forEach(
+                attachments -> attachments.getContent().getBody().forEach(
+                        body -> {
+                            if(body.getType().equals("ActionSet")){
+                                body.getActions().forEach(
+                                        action -> {
+                                            if(action.getId().equals("pipeline-url")){
+                                                String pipelineId = System.getenv("CI_PIPELINE_ID");
+                                                String pipelineUrl = String.format("https://git.sg.m-daq.net/gogogo/go3-testing/go3-integration-test/-/pipelines/%s",pipelineId);
+                                                action.setUrl(pipelineUrl);
+                                                action.setTitle(String.format("Open Pipeline #{%s}", pipelineId));
+                                            }
+                                        }
+                                );
+                            }
+                        }
+                )
+        );
+    }
+
+
     public void updateCardInfo(GetLaunchByUuidResponse launchInfo, AdaptiveCard adaptiveCard, String rpLaunchUrl) {
         adaptiveCard.getAttachments().forEach(
                 attachment -> attachment.getContent().getBody().forEach(
@@ -72,6 +102,12 @@ public class TeamsNotificationCardHandler {
                                         action -> {
                                             if (action.getId().equals("open-rp")) {
                                                 action.setUrl(rpLaunchUrl);
+                                            }
+                                            if (action.getId().equals("open-gitlab")){
+                                                String pipelineId = System.getenv("CI_PIPELINE_ID");
+                                                String pipelineUrl = String.format("https://git.sg.m-daq.net/gogogo/go3-testing/go3-integration-test/-/pipelines/%s",pipelineId);
+                                                action.setUrl(pipelineUrl);
+                                                action.setTitle(String.format("Open Pipeline #{%s}", pipelineId));
                                             }
                                         }
                                 );

@@ -1,0 +1,52 @@
+{
+  "type":"message",
+  "attachments":[
+    {
+      "contentType":"application/vnd.microsoft.card.adaptive",
+      "content": {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.4",
+        "body": [
+          {
+            "type": "Container",
+            "items": [
+              {
+                "type": "TextBlock",
+                "text": "FAILED TO EXECUTE TEST(S)",
+                "wrap": true,
+                "color": "Accent",
+                "horizontalAlignment": "Center",
+                "size": "Large",
+                "weight": "Bolder"
+              },
+              {
+                "type": "TextBlock",
+                "text": "The test result was not up-to-date. \n\nThe cause could be Compilation Error, Please check",
+                "wrap": true,
+                "horizontalAlignment": "Center",
+                "color": "Warning",
+                "separator": true
+              }
+            ],
+            "style": "warning"
+          },
+          {
+            "type": "ActionSet",
+            "actions": [
+              {
+                "type": "Action.OpenUrl",
+                "title": "Open Pipeline {%s}",
+                "url": "https://git.sg.m-daq.net/gogogo/go3-testing/go3-integration-test/-/pipelines",
+                "id": "pipeline-url"
+              }
+            ],
+            "horizontalAlignment": "Center"
+          }
+        ]
+      }
+    }
+
+
+  ]
+}
